@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+	  <!-- {% include header.html %} -->
+
+		<div class='container'>
+			<div class='row'>
+				<div class='col-sm-offset-1 col-sm-2'>
+					{% include sidebar-left.html %}
+				</div>
+			
+		    <div class="page-content col-sm-9">
+		      <div class="wrapper">
+		        {{ content }}
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<!-- {% include footer.html %} -->
+  </body>
+
+</html>
