@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">Yang Li</h4>
+    <h6 class="card-subtitle text-muted">A Developer</h6>
+  </div>
+  <img src="https://s.gravatar.com/avatar/4644830099bc8fa3d58af596c7c8843d?s=256" alt="avatar">
+
+	<!--
+	<hr />
+
+  <div class="card-block">
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+	-->
+
+	<hr />
+
+  <ul>
+		{% for m in site.modules %}
+		<li>
+		  <a href="{{ m.permalink }}">
+			  {{ m.name }}
+		  </a>
+		</li>
+		{% endfor %}
+  </ul>
+	
+	<hr />
+
+  <div class="card-block">
+		<div class="row text-center">
+			{% for s in site.social_media %}
+		    <a href="{{ s.baseurl }}{{ s.username }}" class="card-link" target="_blank">
+					<img src="{{ site.icons_path }}{{ s.name }}.png" alt="{{ s.name }}">
+				</a>
+			{% endfor %}
+		</div>
+  </div>
+</div>
