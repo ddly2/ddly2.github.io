@@ -1,23 +1,270 @@
----
-layout: lynyc
----
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PReak</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-<div class="home">
+    :root {
+      --bg: #0b0b12;
+      --bg2: #13131f;
+      --fg: #f0f0f5;
+      --sub: rgba(240,240,245,0.5);
+      --accent: #a064ff;
+      --accent-dim: rgba(160,100,255,0.18);
+      --divider: rgba(255,255,255,0.07);
+      --card-bg: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.08);
+      --switcher-bg: rgba(255,255,255,0.06);
+      --switcher-active: rgba(255,255,255,0.12);
+    }
 
-  <h1 class="page-heading">Posts</h1>
+    [data-theme="light"] {
+      --bg: #f0f0f5;
+      --bg2: #e8e8f0;
+      --fg: #0d0d1a;
+      --sub: rgba(13,13,26,0.5);
+      --accent: #6d28d9;
+      --accent-dim: rgba(109,40,217,0.1);
+      --divider: rgba(0,0,0,0.08);
+      --card-bg: rgba(255,255,255,0.7);
+      --card-border: rgba(0,0,0,0.07);
+      --switcher-bg: rgba(0,0,0,0.06);
+      --switcher-active: rgba(0,0,0,0.1);
+    }
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+    @media (prefers-color-scheme: light) {
+      [data-theme="system"] {
+        --bg: #f0f0f5;
+        --bg2: #e8e8f0;
+        --fg: #0d0d1a;
+        --sub: rgba(13,13,26,0.5);
+        --accent: #6d28d9;
+        --accent-dim: rgba(109,40,217,0.1);
+        --divider: rgba(0,0,0,0.08);
+        --card-bg: rgba(255,255,255,0.7);
+        --card-border: rgba(0,0,0,0.07);
+        --switcher-bg: rgba(0,0,0,0.06);
+        --switcher-active: rgba(0,0,0,0.1);
+      }
+    }
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      transition: background 0.25s, color 0.25s;
+    }
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+    /* Theme switcher — top right */
+    .theme-switcher {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      display: inline-flex;
+      background: var(--switcher-bg);
+      border: 1px solid var(--divider);
+      border-radius: 99px;
+      padding: 3px;
+      gap: 2px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
 
-</div>
+    .theme-switcher button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.3rem 0.7rem;
+      border-radius: 99px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--sub);
+      transition: background 0.15s, color 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .theme-switcher button.active {
+      background: var(--switcher-active);
+      color: var(--fg);
+    }
+
+    /* Hero */
+    main {
+      text-align: center;
+      width: 100%;
+      max-width: 480px;
+    }
+
+    .logo-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+
+    .logo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle, rgba(160,100,255,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    img {
+      width: 110px;
+      height: 110px;
+      border-radius: 26px;
+      display: block;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.6rem;
+      background: linear-gradient(135deg, var(--fg) 40%, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      color: var(--sub);
+      line-height: 1.65;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid rgba(160,100,255,0.25);
+      padding: 0.45rem 1rem;
+      border-radius: 99px;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    /* Contact card */
+    .card {
+      margin-top: 3rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.75rem 2rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
+
+    .card-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .card-row span {
+      font-size: 0.78rem;
+      color: var(--sub);
+    }
+
+    .card-row a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      word-break: break-all;
+    }
+
+    .card-row a:hover { text-decoration: underline; }
+
+    .card-divider {
+      border: none;
+      border-top: 1px solid var(--divider);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="theme-switcher">
+    <button onclick="setTheme('light')" id="btn-light">Light</button>
+    <button onclick="setTheme('system')" id="btn-system">System</button>
+    <button onclick="setTheme('dark')" id="btn-dark">Dark</button>
+  </div>
+
+  <main>
+    <div class="logo-wrap">
+      <img src="assets/preak-icon-192.png" alt="PReak">
+    </div>
+
+    <h1>PReak</h1>
+    <p class="tagline">A place where great apps are made.<br>More are on the way.</p>
+    <span class="badge">Stay tuned</span>
+
+    <div class="card">
+      <p class="card-label">Contact</p>
+      <div class="card-row">
+        <span>Get in touch</span>
+        <a href="mailto:athlete-03-racer@icloud.com">athlete-03-racer@icloud.com</a>
+      </div>
+      <hr class="card-divider">
+      <div class="card-row">
+        <span>PReak support</span>
+        <a href="https://ddly2.github.io/preak-support/">ddly2.github.io/preak-support</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.remove('active'));
+      document.getElementById('btn-' + theme).classList.add('active');
+    }
+    setTheme(localStorage.getItem('theme') || 'system');
+  </script>
+</body>
+</html>
