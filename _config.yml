@@ -50,6 +50,10 @@ social_media:
   #   baseurl: https://instagram.com/
   #   username: ddly2nyc
 
+# Explicitly include files that should be served from root
+include:
+  - app-ads.txt
+
 # Build settings
 markdown: kramdown
 
