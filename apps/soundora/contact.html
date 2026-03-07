@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Soundora</title>
+  <style>
+    /* ── Theme tokens ─────────────────────────────────────────────────────── */
+    :root {
+      --accent:        #7c3aed;
+      --accent-light:  #a78bfa;
+      --accent-dim:    rgba(124, 58, 237, 0.15);
+      --accent-border: rgba(124, 58, 237, 0.35);
+    }
+
+    [data-resolved="dark"] {
+      --bg:           #0f0818;
+      --surface:      #1a0f2e;
+      --surface-2:    #221540;
+      --border:       #2e1f4a;
+      --text:         #e2d9f3;
+      --text-muted:   #9d89c4;
+      --text-dim:     #6b5a8e;
+      --switch-track: #2e1f4a;
+      --switch-hover: #3d2a60;
+      --input-bg:     #150c25;
+    }
+
+    [data-resolved="light"] {
+      --bg:           #f5f3ff;
+      --surface:      #ffffff;
+      --surface-2:    #ede9fe;
+      --border:       #ddd6fe;
+      --text:         #1e1033;
+      --text-muted:   #5b4a8a;
+      --text-dim:     #9d89c4;
+      --switch-track: #ede9fe;
+      --switch-hover: #ddd6fe;
+      --input-bg:     #ffffff;
+    }
+
+    /* ── Reset ────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ─────────────────────────────────────────────────────────────── */
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      padding: 0 24px 80px;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    /* ── Top bar ──────────────────────────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .topbar-brand {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+    }
+
+    /* ── Theme switch ─────────────────────────────────────────────────────── */
+    .theme-switch {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: var(--switch-track);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 3px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .theme-switch button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      border-radius: 7px;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .theme-switch button:hover {
+      background: var(--switch-hover);
+      color: var(--text-muted);
+    }
+
+    .theme-switch button.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .theme-switch button svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────────────────── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 48px;
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    /* ── Form card ────────────────────────────────────────────────────────── */
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group:last-of-type {
+      margin-bottom: 0;
+    }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text);
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.25s;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-dim);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 130px;
+      line-height: 1.6;
+    }
+
+    .notice {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ── Alt contact ──────────────────────────────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+      transition: border-color 0.25s;
+    }
+
+    .alt-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .alt-card-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .alt-card-icon svg { width: 18px; height: 18px; color: var(--accent-light); }
+
+    .alt-card-info .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 3px;
+    }
+
+    .alt-card-info a {
+      color: var(--accent-light);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .alt-card-info a:hover { text-decoration: underline; }
+
+    /* ── Submit button ────────────────────────────────────────────────────── */
+    .form-actions {
+      margin-top: 28px;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 28px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn-submit:hover { opacity: 0.88; }
+    .btn-submit:active { transform: scale(0.98); }
+
+    .btn-submit svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────────── */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-dim);
+      transition: border-color 0.25s;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav class="topbar">
+      <span class="topbar-brand">Soundora</span>
+
+      <div class="theme-switch" role="group" aria-label="Theme">
+        <button id="btn-system" onclick="setTheme('system')" title="System">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+          Auto
+        </button>
+        <button id="btn-light" onclick="setTheme('light')" title="Light">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          Light
+        </button>
+        <button id="btn-dark" onclick="setTheme('dark')" title="Dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          Dark
+        </button>
+      </div>
+    </nav>
+
+    <header>
+      <h1>Contact Us</h1>
+      <p class="subtitle">Have a question, suggestion, or issue? We'd love to hear from you.</p>
+    </header>
+
+    <div class="form-card">
+      <form id="contact-form" novalidate>
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Your email <span style="color:var(--text-dim);font-weight:400;letter-spacing:0;text-transform:none">(so we can reply)</span></label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="topic">Topic</label>
+          <input type="text" id="topic" name="topic" placeholder="e.g. Bug report, Feature request…" />
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message <span style="color:#ef4444;font-size:13px;font-weight:400;letter-spacing:0;text-transform:none">*</span></label>
+          <textarea id="message" name="message" placeholder="Describe your issue or feedback…" required></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-submit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            Open email app to send
+          </button>
+        </div>
+        <p class="notice">This opens your default mail app. No data is sent to our servers.</p>
+      </form>
+    </div>
+
+    <hr class="divider" />
+
+    <p style="font-weight:600;margin-bottom:14px;color:var(--text)">Prefer to write directly?</p>
+    <div class="alt-card">
+      <div class="alt-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="alt-card-info">
+        <p class="label">Email</p>
+        <a href="mailto:athlete-03-racer@icloud.com">athlete-03-racer@icloud.com</a>
+      </div>
+    </div>
+
+    <footer>
+      <span class="footer-brand">Soundora</span>
+      <span>&copy; 2026 All rights reserved.</span>
+    </footer>
+  </div>
+
+  <script>
+    /* ── Theme ────────────────────────────────────────────────────────────── */
+    const html = document.documentElement;
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function applyResolved(theme) {
+      const resolved = theme === 'system'
+        ? (mq.matches ? 'dark' : 'light')
+        : theme;
+      html.setAttribute('data-resolved', resolved);
+    }
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('soundora-theme', theme);
+      applyResolved(theme);
+      document.querySelectorAll('.theme-switch button').forEach(btn => {
+        btn.classList.toggle('active', btn.id === 'btn-' + theme);
+      });
+    }
+
+    const saved = localStorage.getItem('soundora-theme') || 'system';
+    setTheme(saved);
+
+    mq.addEventListener('change', () => {
+      if (html.getAttribute('data-theme') === 'system') applyResolved('system');
+    });
+
+    /* ── Form ─────────────────────────────────────────────────────────────── */
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!this.checkValidity()) {
+        this.reportValidity();
+        return;
+      }
+
+      var name    = document.getElementById('name').value.trim();
+      var email   = document.getElementById('email').value.trim();
+      var topic   = document.getElementById('topic').value.trim();
+      var message = document.getElementById('message').value.trim();
+
+      var subject = topic ? '[Soundora] ' + topic : '[Soundora] Contact';
+
+      var body = 'App: Soundora\n';
+      if (name)  body += 'Name: '  + name  + '\n';
+      if (email) body += 'Email: ' + email + '\n';
+      if (topic) body += 'Topic: ' + topic + '\n';
+      body += '\n' + message;
+
+      var mailto = 'mailto:athlete-03-racer@icloud.com'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body='    + encodeURIComponent(body);
+
+      window.location.href = mailto;
+    });
+  </script>
+
+</body>
+</html>

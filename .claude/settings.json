@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git submodule status)",
+      "Bash(git submodule deinit -f apps)",
+      "Bash(git rm -f apps)",
+      "Bash(rm -rf .git/modules/apps)",
+      "Bash(git -C /Users/ddly2/workspace/ddly2.github.io status)"
+    ]
+  }
+}

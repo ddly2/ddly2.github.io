@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Soundora</title>
+  <style>
+    /* ── Theme tokens ─────────────────────────────────────────────────────── */
+    :root {
+      --accent:        #7c3aed;
+      --accent-light:  #a78bfa;
+      --accent-dim:    rgba(124, 58, 237, 0.15);
+      --accent-border: rgba(124, 58, 237, 0.35);
+    }
+
+    [data-resolved="dark"] {
+      --bg:           #0f0818;
+      --surface:      #1a0f2e;
+      --surface-2:    #221540;
+      --border:       #2e1f4a;
+      --text:         #e2d9f3;
+      --text-muted:   #9d89c4;
+      --text-dim:     #6b5a8e;
+      --switch-track: #2e1f4a;
+      --switch-hover: #3d2a60;
+    }
+
+    [data-resolved="light"] {
+      --bg:           #f5f3ff;
+      --surface:      #ffffff;
+      --surface-2:    #ede9fe;
+      --border:       #ddd6fe;
+      --text:         #1e1033;
+      --text-muted:   #5b4a8a;
+      --text-dim:     #9d89c4;
+      --switch-track: #ede9fe;
+      --switch-hover: #ddd6fe;
+    }
+
+    /* ── Reset ────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ─────────────────────────────────────────────────────────────── */
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      padding: 0 24px 80px;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    /* ── Top bar ──────────────────────────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .topbar-brand {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+    }
+
+    /* ── Theme switch ─────────────────────────────────────────────────────── */
+    .theme-switch {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: var(--switch-track);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 3px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .theme-switch button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      border-radius: 7px;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .theme-switch button:hover {
+      background: var(--switch-hover);
+      color: var(--text-muted);
+    }
+
+    .theme-switch button.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .theme-switch button svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────────────────── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 48px;
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+
+    .updated {
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+      transition: border-color 0.25s;
+    }
+
+    /* ── Sections ─────────────────────────────────────────────────────────── */
+    section {
+      margin-bottom: 44px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 10px;
+    }
+
+    .section-label::after {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent-light);
+      opacity: 0.4;
+    }
+
+    h2 {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+      letter-spacing: -0.3px;
+    }
+
+    p {
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    strong { color: var(--text); font-weight: 600; }
+
+    /* ── Lists ────────────────────────────────────────────────────────────── */
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    ul li {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    ul li::before {
+      content: "";
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* ── Cards ────────────────────────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-top: 18px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .card a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-light);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s;
+    }
+
+    .card a:last-child { border-bottom: none; padding-bottom: 0; }
+    .card a:first-of-type { padding-top: 0; }
+    .card a:hover { color: #fff; }
+
+    .card a svg {
+      width: 13px;
+      height: 13px;
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+
+    /* ── Highlight box ────────────────────────────────────────────────────── */
+    .highlight-box {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .highlight-row {
+      display: flex;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .highlight-row .pill {
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      padding: 2px 8px;
+      line-height: 1.8;
+      white-space: nowrap;
+    }
+
+    /* ── Contact ─────────────────────────────────────────────────────────── */
+    .contact-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-icon svg { width: 18px; height: 18px; color: var(--accent-light); }
+
+    .contact-info .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 3px;
+    }
+
+    .contact-info a {
+      color: var(--accent-light);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .contact-info a:hover { text-decoration: underline; }
+
+    /* ── Footer ───────────────────────────────────────────────────────────── */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-dim);
+      transition: border-color 0.25s;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav class="topbar">
+      <span class="topbar-brand">Soundora</span>
+
+      <div class="theme-switch" role="group" aria-label="Theme">
+        <button id="btn-system" onclick="setTheme('system')" title="System">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+          Auto
+        </button>
+        <button id="btn-light" onclick="setTheme('light')" title="Light">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          Light
+        </button>
+        <button id="btn-dark" onclick="setTheme('dark')" title="Dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          Dark
+        </button>
+      </div>
+    </nav>
+
+    <header>
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: March 6, 2026</p>
+    </header>
+
+    <p>Soundora is an ambient sound mixer for iOS. This policy explains what data is collected, by whom, and how it is used.</p>
+
+    <hr class="divider" />
+
+    <section>
+      <p class="section-label">01</p>
+      <h2>Data We Collect</h2>
+      <p>We do not collect, store, or transmit any personal data to our own servers.</p>
+      <p>All user preferences — saved presets and favorites — are stored <strong>locally on your device</strong> using Apple's standard storage APIs and are never sent anywhere.</p>
+    </section>
+
+    <section>
+      <p class="section-label">02</p>
+      <h2>Advertising (Google AdMob)</h2>
+      <p>Soundora displays banner ads provided by <strong>Google AdMob</strong>. Google may collect data to serve and measure ads, including:</p>
+      <ul>
+        <li>Device identifiers (IDFA, if you grant permission)</li>
+        <li>IP address and approximate location</li>
+        <li>Ad interaction events (impressions, taps)</li>
+        <li>Device information (model, OS version, language)</li>
+      </ul>
+      <p>If you decline the App Tracking Transparency prompt, only non-personalized ads are shown. Google's data collection for non-personalized ads is limited to contextual and fraud-prevention signals.</p>
+      <div class="card">
+        <p class="card-title">Third-party policies</p>
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Google Privacy Policy
+        </a>
+        <a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Google Advertising Policies
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <p class="section-label">03</p>
+      <h2>App Tracking Transparency</h2>
+      <p>On first launch, Soundora will ask for permission to track you across apps and websites using your device's Advertising Identifier (IDFA). This is used solely to show more relevant ads via AdMob.</p>
+      <div class="highlight-box">
+        <div class="highlight-row">
+          <span class="pill">Allow</span>
+          <span>Personalized ads may be shown based on your interests.</span>
+        </div>
+        <div class="highlight-row">
+          <span class="pill">Decline</span>
+          <span>Only non-personalized ads are shown. App functionality is unaffected.</span>
+        </div>
+      </div>
+      <p>You can change this permission at any time in <strong>Settings → Privacy &amp; Security → Tracking</strong>.</p>
+    </section>
+
+    <section>
+      <p class="section-label">04</p>
+      <h2>Data We Do Not Collect</h2>
+      <ul>
+        <li>No account or sign-in required</li>
+        <li>No name, email, or contact information</li>
+        <li>No location data (beyond what AdMob may infer from IP)</li>
+        <li>No microphone or camera access</li>
+        <li>No analytics or crash reporting services</li>
+      </ul>
+    </section>
+
+    <section>
+      <p class="section-label">05</p>
+      <h2>Children's Privacy</h2>
+      <p>Soundora is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information via the app, please contact us so we can address it.</p>
+    </section>
+
+    <section>
+      <p class="section-label">06</p>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this policy when the app's functionality or third-party services change. The "Last updated" date at the top will reflect any changes. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+    </section>
+
+    <section>
+      <p class="section-label">07</p>
+      <h2>Contact</h2>
+      <p>Questions about this privacy policy? Reach out at:</p>
+      <div class="contact-card">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="contact-info">
+          <p class="label">Email</p>
+          <a href="mailto:[your@email.com]">[your@email.com]</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span class="footer-brand">Soundora</span>
+      <span>&copy; 2026 All rights reserved.</span>
+    </footer>
+  </div>
+
+  <script>
+    const html = document.documentElement;
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function applyResolved(theme) {
+      const resolved = theme === 'system'
+        ? (mq.matches ? 'dark' : 'light')
+        : theme;
+      html.setAttribute('data-resolved', resolved);
+    }
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('soundora-theme', theme);
+      applyResolved(theme);
+      document.querySelectorAll('.theme-switch button').forEach(btn => {
+        btn.classList.toggle('active', btn.id === 'btn-' + theme);
+      });
+    }
+
+    // Init
+    const saved = localStorage.getItem('soundora-theme') || 'system';
+    setTheme(saved);
+
+    // Follow system changes when in system mode
+    mq.addEventListener('change', () => {
+      if (html.getAttribute('data-theme') === 'system') applyResolved('system');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Soundora</title>
+  <style>
+    /* ── Theme tokens ─────────────────────────────────────────────────────── */
+    :root {
+      --accent:        #7c3aed;
+      --accent-light:  #a78bfa;
+      --accent-dim:    rgba(124, 58, 237, 0.15);
+      --accent-border: rgba(124, 58, 237, 0.35);
+    }
+
+    [data-resolved="dark"] {
+      --bg:           #0f0818;
+      --surface:      #1a0f2e;
+      --surface-2:    #221540;
+      --border:       #2e1f4a;
+      --text:         #e2d9f3;
+      --text-muted:   #9d89c4;
+      --text-dim:     #6b5a8e;
+      --switch-track: #2e1f4a;
+      --switch-hover: #3d2a60;
+    }
+
+    [data-resolved="light"] {
+      --bg:           #f5f3ff;
+      --surface:      #ffffff;
+      --surface-2:    #ede9fe;
+      --border:       #ddd6fe;
+      --text:         #1e1033;
+      --text-muted:   #5b4a8a;
+      --text-dim:     #9d89c4;
+      --switch-track: #ede9fe;
+      --switch-hover: #ddd6fe;
+    }
+
+    /* ── Reset ────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Base ─────────────────────────────────────────────────────────────── */
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      padding: 0 24px 80px;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    /* ── Top bar ──────────────────────────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .topbar-brand {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+    }
+
+    /* ── Theme switch ─────────────────────────────────────────────────────── */
+    .theme-switch {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: var(--switch-track);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 3px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .theme-switch button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      border-radius: 7px;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .theme-switch button:hover {
+      background: var(--switch-hover);
+      color: var(--text-muted);
+    }
+
+    .theme-switch button.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .theme-switch button svg {
+      width: 12px;
+      height: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────────────────── */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 48px;
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    p { color: var(--text); margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Nav cards ────────────────────────────────────────────────────────── */
+    .nav-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 48px;
+    }
+
+    .nav-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+    }
+
+    .nav-card:hover {
+      background: var(--surface-2);
+      border-color: var(--accent-border);
+    }
+
+    .nav-card:active { transform: scale(0.99); }
+
+    .nav-card-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-card-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-light);
+    }
+
+    .nav-card-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .nav-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .nav-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .nav-card-arrow {
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    .nav-card-arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ── Divider ──────────────────────────────────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+      transition: border-color 0.25s;
+    }
+
+    /* ── Section label ────────────────────────────────────────────────────── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 10px;
+    }
+
+    .section-label::after {
+      content: "";
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent-light);
+      opacity: 0.4;
+    }
+
+    h2 {
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+
+    /* ── Highlight box ────────────────────────────────────────────────────── */
+    .highlight-box {
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0 0;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .highlight-box p {
+      font-size: 15px;
+      color: var(--text);
+      margin: 0;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────────── */
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-dim);
+      transition: border-color 0.25s;
+    }
+
+    .footer-brand {
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav class="topbar">
+      <span class="topbar-brand">Soundora</span>
+
+      <div class="theme-switch" role="group" aria-label="Theme">
+        <button id="btn-system" onclick="setTheme('system')" title="System">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+          Auto
+        </button>
+        <button id="btn-light" onclick="setTheme('light')" title="Light">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+          Light
+        </button>
+        <button id="btn-dark" onclick="setTheme('dark')" title="Dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          Dark
+        </button>
+      </div>
+    </nav>
+
+    <header>
+      <h1>Support</h1>
+      <p class="subtitle">Everything you need to get help with Soundora.</p>
+    </header>
+
+    <div class="nav-cards">
+      <a href="contact.html" class="nav-card">
+        <div class="nav-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="nav-card-body">
+          <p class="nav-card-title">Contact Us</p>
+          <p class="nav-card-desc">Send us a message — bug reports, feature requests, or anything else.</p>
+        </div>
+        <span class="nav-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </span>
+      </a>
+
+      <a href="privacy-policy.html" class="nav-card">
+        <div class="nav-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="nav-card-body">
+          <p class="nav-card-title">Privacy Policy</p>
+          <p class="nav-card-desc">How Soundora handles your data and what third parties are involved.</p>
+        </div>
+        <span class="nav-card-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <hr class="divider" />
+
+    <section>
+      <p class="section-label">About</p>
+      <h2>What is Soundora?</h2>
+      <p>Soundora is an ambient sound mixer for iOS. Blend rain, white noise, nature sounds, and more to create your perfect focus or sleep environment.</p>
+      <div class="highlight-box">
+        <p>No account required. All your presets and favorites are saved locally on your device and never leave it.</p>
+      </div>
+    </section>
+
+    <footer>
+      <span class="footer-brand">Soundora</span>
+      <span>&copy; 2026 All rights reserved.</span>
+    </footer>
+  </div>
+
+  <script>
+    const html = document.documentElement;
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function applyResolved(theme) {
+      const resolved = theme === 'system'
+        ? (mq.matches ? 'dark' : 'light')
+        : theme;
+      html.setAttribute('data-resolved', resolved);
+    }
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('soundora-theme', theme);
+      applyResolved(theme);
+      document.querySelectorAll('.theme-switch button').forEach(btn => {
+        btn.classList.toggle('active', btn.id === 'btn-' + theme);
+      });
+    }
+
+    const saved = localStorage.getItem('soundora-theme') || 'system';
+    setTheme(saved);
+
+    mq.addEventListener('change', () => {
+      if (html.getAttribute('data-theme') === 'system') applyResolved('system');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support — PReak</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 0 16px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 0 80px;
+    }
+
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #7c3aed, #db2777);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 6px;
+      letter-spacing: -0.4px;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 40px;
+    }
+
+    p { margin-bottom: 14px; color: #374151; }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 480px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      display: block;
+      padding: 24px;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      border-color: #7c3aed;
+      box-shadow: 0 2px 12px rgba(124, 58, 237, 0.1);
+    }
+
+    .card-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0;
+    }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="app-icon">💪</div>
+
+  <h1>PReak Support</h1>
+  <p class="meta">Personal Record Tracker for iOS</p>
+
+  <p>Welcome to PReak support. How can we help you?</p>
+
+  <div class="card-grid">
+    <a href="contact.html" class="card">
+      <div class="card-icon">✉️</div>
+      <div class="card-title">Contact Us</div>
+      <p class="card-desc">Send feedback, report a bug, or ask a question.</p>
+    </a>
+    <a href="privacy-policy.html" class="card">
+      <div class="card-icon">🔒</div>
+      <div class="card-title">Privacy Policy</div>
+      <p class="card-desc">How we handle your data and your rights.</p>
+    </a>
+  </div>
+
+  <footer>
+    <p>PReak &nbsp;·&nbsp; Support Site</p>
+  </footer>
+
+</div>
+</body>
+</html>

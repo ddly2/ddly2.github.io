@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact &amp; Support — PReak</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 0 16px;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 0 80px;
+    }
+
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #7c3aed, #db2777);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 6px;
+      letter-spacing: -0.4px;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 40px;
+    }
+
+    p { margin-bottom: 14px; color: #374151; }
+
+    a { color: #7c3aed; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 15px;
+      font-family: inherit;
+      color: #111;
+      background: #fff;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.15s;
+      -webkit-appearance: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #7c3aed;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 4px;
+    }
+    .btn:hover  { background: #6d28d9; }
+    .btn:active { transform: scale(0.98); }
+
+    .notice {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 40px 0;
+    }
+
+    .alt-contact {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .alt-contact p { margin: 0; font-size: 15px; }
+
+    footer {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+    footer a { color: #9ca3af; }
+    footer a:hover { color: #7c3aed; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="app-icon">💪</div>
+
+  <h1>Contact &amp; Support</h1>
+  <p class="meta">PReak</p>
+
+  <p>Have a question, found a bug, or want to suggest a feature? Fill in the form below and it will open your email app with everything pre-filled — just hit send.</p>
+
+  <form id="contactForm">
+    <div class="form-group">
+      <label for="name">Your name</label>
+      <input type="text" id="name" placeholder="Jane Smith">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Your email <span style="color:#9ca3af;font-weight:400">(so we can reply)</span></label>
+      <input type="email" id="email" placeholder="you@example.com">
+    </div>
+
+    <div class="form-group">
+      <label for="topic">Topic</label>
+      <input type="text" id="topic" placeholder="e.g. Bug report, Feature request…">
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message <span style="color:#ef4444;font-size:13px">*</span></label>
+      <textarea id="message" placeholder="Describe your issue or feedback…" required></textarea>
+    </div>
+
+    <button type="submit" class="btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Open email app to send
+    </button>
+    <p class="notice">This opens your default mail app. No data is sent to our servers.</p>
+  </form>
+
+  <hr class="divider">
+
+  <p style="font-weight:600;margin-bottom:10px;">Prefer to write directly?</p>
+  <div class="alt-contact">
+    <p>Email us at <a href="mailto:athlete-03-racer@icloud.com">athlete-03-racer@icloud.com</a></p>
+  </div>
+
+  <footer>
+    <p>PReak &nbsp;·&nbsp; <a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="index.html">Support Home</a></p>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name    = document.getElementById('name').value.trim();
+    var email   = document.getElementById('email').value.trim();
+    var topic   = document.getElementById('topic').value;
+    var message = document.getElementById('message').value.trim();
+
+    if (!message) {
+      document.getElementById('message').focus();
+      return;
+    }
+
+    var subject = '[PReak] ' + topic;
+
+    var body = '';
+    body += 'App: preak\n';
+    if (name)  body += 'Name: ' + name + '\n';
+    if (email) body += 'Email: ' + email + '\n';
+    body += 'Topic: ' + topic + '\n\n';
+    body += message;
+
+    var mailto = 'mailto:athlete-03-racer@icloud.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body='    + encodeURIComponent(body);
+
+    window.location.href = mailto;
+  });
+</script>
+</body>
+</html>
